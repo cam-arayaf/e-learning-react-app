@@ -1,0 +1,311 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    height: 80px;
+    background: #444;
+    z-index: 1;
+}
+
+h1 {
+    margin-left: 5px;
+}
+
+button {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 49%);
+    justify-content: space-between;
+    padding-top: 80px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.logo, .logo-404, .cart {
+    display: flex;
+    flex-grow: 1;
+}
+
+.logo {
+    justify-content: flex-start;
+    padding-left: 80px;
+}
+
+.logo-404 {
+    justify-content: center;
+}
+
+.cart {
+    justify-content: flex-end;
+    padding-right: 80px;
+}
+
+.logo a, .logo-404 a, .cart button {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.logo a, .logo-404 a {
+    justify-content: flex-start;
+    text-decoration: none;
+}
+
+.logo a img, .logo-404 a img {
+    width: 32px;
+    height: 32px;
+}
+
+.cart button {
+    justify-content: flex-end;
+    background: none;
+}
+
+.cart button img {
+    width: 48px;
+    height: 48px;
+}
+
+.cart-disable button {
+    cursor: not-allowed;
+}
+
+.logo a, .logo-404 a, .cart-enable button, .course button,
+.link, .course img, .modal-buttons button {
+    transition: all 300ms;
+    cursor: pointer;
+}
+
+.logo a:hover, .logo-404 a:hover, .cart-enable button:hover,
+.course button:hover,.link:hover, .course img:hover,
+.modal-buttons button:hover {
+    transform: scale(1.1);
+}
+
+.cart button:hover strong {
+    background: red;
+}
+
+.cart button strong {
+    padding: 10px;
+    border-radius: 20px;
+    background: #fa4659;
+}
+
+.message {
+    margin-top: 0;
+    padding-top: 90px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    color: #444;
+}
+
+.link {
+    text-align: center;
+}
+
+.link:hover a {
+    background: #5b73a7;
+}
+
+.link a {
+    width: 80px;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+    background: #5a96bb;
+}
+
+.progress-bar {
+    padding-top: 90px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
+
+.course {
+    text-align: center;
+    box-shadow: 0px 0px 10px #444;
+    background: #f4f4f4;
+    border-radius: 5px;
+    color: #444;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.course img {
+    width: 70%;
+    height: auto;
+    filter: saturate(200%);
+    z-index: 0;
+    box-shadow: 0px 0px 20px #444;
+}
+
+.course ul {
+    list-style: none;
+    padding: 0;
+}
+
+.course button {
+    width: 80px;
+    padding: 10px;
+    color: white;
+}
+
+.add {
+    background: #44c662;
+}
+
+.remove {
+    background:#fa4659;
+}
+
+.add:hover {
+    background: green;
+}
+
+.remove:hover {
+    background: red;
+}
+
+@media (max-width: 219px) {
+    .logo-404 h1 {
+        display: none;
+    }
+
+    .progress-bar img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 279px) {
+    .logo {
+        display: none !important;
+    }
+
+    header .cart {
+        justify-content: center !important;
+        margin-left: 65px !important;
+        padding-right: 0px !important;
+    }
+}
+
+@media (max-width: 449px) {
+    .logo h1 {
+        display: none;
+    }
+}
+
+@media (max-width: 669px) {
+    .logo {
+        padding-left: 30px !important;
+    }
+
+    .cart {
+        padding-right: 30px !important;
+    }
+
+    section {
+        grid-template-columns: 1fr !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+}
+
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    padding-top: 80px;
+    color: #444;
+}
+
+.modal-content {
+    background: #f4f4f4;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.modal-close {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: end;
+    padding: 15px;
+    margin-bottom: -40px;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    color: #f44336;
+}
+
+.modal-container {
+    padding: 15px;
+    text-align: center;
+}
+
+.modal-buttons {
+    display: flex;
+}
+
+.modal-cancel, .modal-pay {
+    margin: 15px;
+    padding: 15px;
+    width: 50%;
+    opacity: 0.9;
+}
+
+.modal-cancel:hover, .modal-pay:hover {
+    opacity:1;
+}
+
+.modal-cancel {
+    justify-content: flex-start;
+    background: #ccc;
+    color: black;
+}
+
+.modal-pay {
+    justify-content: flex-end;
+    background: #f44336;
+    color: white;
+}
+
+@media screen and (max-width: 299px) {
+    .modal-buttons {
+        display: block;
+    }
+
+    .modal-cancel, .modal-pay {
+        justify-content: initial;
+        margin: 0;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+}
