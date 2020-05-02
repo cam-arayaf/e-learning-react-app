@@ -1,17 +1,19 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { base_url, errorMessage } from './../constants';
+import { validateSelectedCourses, validateTotal } from './../helpers';
+import { base_url } from './../constants';
 
 export const CoursesContext = createContext();
 
 const CoursesContextProvider = ({ children }) => {
 	const { pathname } = useLocation();
 	const body = document.querySelector('body');
-	const selectedCoursesLS = JSON.parse(localStorage.getItem('selectedCourses')) || [];
+	const errorMessage = 'Internal server error. Please, try again';
 	const [charged, setCharged] = useState(false);
+	const [processing, setProcessing] = useState(false);
 	const [courses, setCourses] = useState([]);
-	const [selectedCourses, setSelectedCourses] = useState(selectedCoursesLS);
-	const [total, setTotal] = useState(Number(localStorage.getItem('total')) || 0);
+	const [selectedCourses, setSelectedCourses] = useState(validateSelectedCourses() || []);
+	const [total, setTotal] = useState(validateTotal() || 0);
 	const [showModal, setShowModal] = useState(false);
 	const [message, setMessage] = useState('');
 	const [paid, setPaid] = useState(false);
@@ -21,14 +23,17 @@ const CoursesContextProvider = ({ children }) => {
 		fetch(`${ base_url }courses`)
 			.then(res => res.json())
 			.then(data => {
+				data.ok ? setCourses(data.courses) : setMessage(errorMessage);
 				setCharged(true);
-				setCourses(data.courses);
 			})
-			.catch(() => setCharged(true));
+			.catch(() => {
+				setMessage(errorMessage);
+				setCharged(true);
+			});
 	}
 
 	const postOrder = courses => {
-		setCharged(false);
+		setProcessing(true);
 		const options = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -36,29 +41,35 @@ const CoursesContextProvider = ({ children }) => {
 		};
 		fetch(`${ base_url }orders`, options)
 			.then(res => res.json())
-			.then(() => {
-				localStorage.removeItem('selectedCourses');
-				localStorage.removeItem('total');
-				setSelectedCourses([]);
-				setTotal(0);
-				setCharged(true);
-				setPaid(true);
-				setMessage('Order paid successfully! Thank you very much for choosing us!');
+			.then(data => {
+				data.ok ? successFetchOrder() : setMessage(errorMessage);
+				setProcessing(false);
 			})
 			.catch(() => {
-				setCharged(true)
 				setMessage(errorMessage);
+				setProcessing(false);
 			});
 	}
 
+	const successFetchOrder = () => {
+		localStorage.removeItem('selectedCourses');
+		localStorage.removeItem('total');
+		setSelectedCourses([]);
+		setTotal(0);
+		setMessage('Order paid successfully! Thank you very much for choosing us!');
+		setPaid(true);
+	}
+
 	const getIndex = _id => selectedCourses.findIndex(sc => sc === _id);
+
+	const totalPrice = (_id, price = courses.find(c => c._id === _id).price) =>
+		getIndex(_id) === -1 ? (total - price).toFixed(2) : (total + price).toFixed(2);
 
 	const handleButtonAddRemove = _id => {
 		getIndex(_id) === -1 ? selectedCourses.push(_id) : selectedCourses.splice(getIndex(_id), 1);
 		localStorage.setItem('selectedCourses', JSON.stringify(selectedCourses));
 		setSelectedCourses(JSON.parse(localStorage.getItem('selectedCourses')));
-		const price = courses.find(c => c._id === _id).price;
-		localStorage.setItem('total', getIndex(_id) === -1 ? (total - price).toFixed(2) : (total + price).toFixed(2));
+		localStorage.setItem('total', totalPrice(_id));
 		setTotal(Number(localStorage.getItem('total')));
 	}
 
@@ -83,6 +94,7 @@ const CoursesContextProvider = ({ children }) => {
     return (
         <CoursesContext.Provider value={{
 			charged,
+			processing,
             selectedCourses,
             courses,
             handleButtonAddRemove,
@@ -94,12 +106,13 @@ const CoursesContextProvider = ({ children }) => {
 			postOrder,
 			message,
 			paid,
-			validUrl,
-			errorMessage
+			validUrl
         }}>
             { children }
         </CoursesContext.Provider>
     );
 };
+
+CoursesContextProvider.displayName = 'CoursesContextProvider';
 
 export default CoursesContextProvider;

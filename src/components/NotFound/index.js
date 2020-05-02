@@ -4,7 +4,7 @@ import Message from './../common/Message';
 
 const NotFound = () => (
     <Fragment>
-        <Message text="404: URL Not Found" />
+        <Message>404: URL Not Found</Message>
         <div className="link">
             <Link to="/">Go Back</Link>
         </div>

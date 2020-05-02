@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Message = ({ text }) => (
-    <h2 className="message">{ text }</h2>
+const Message = ({ children }) => (
+    <h2 className="message">{ children }</h2>
 );
 
 Message.displayName = 'Message';

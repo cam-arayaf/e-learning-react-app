@@ -6,26 +6,20 @@ import ProgressBar from './../common/ProgressBar';
 import Modal from './Modal';
 
 const Main = () => {
-    const { 
-        charged, courses, handleButtonAddRemove, getIndex, showModal, errorMessage
-    } = useContext(CoursesContext);
+    const { charged, courses, showModal, message } = useContext(CoursesContext);
     return (
         <Fragment>
             {
                 charged ? (
                     courses.length ?
                         <Fragment>
-                            { showModal && <Modal /> }
+                            { showModal &&<Modal /> }
                             <section>
-                                <Courses
-                                    courses={ courses }
-                                    handleButtonAddRemove={ handleButtonAddRemove }
-                                    getIndex={ getIndex }
-                                />
+                                <Courses />
                             </section>
                         </Fragment>
                     :
-                        <Message text={ errorMessage } />
+                        <Message>{ message }</Message>
                 )
                 :
                     <ProgressBar />

@@ -19,7 +19,7 @@ const Header = () => {
                     <div className={ length ? 'cart cart-enable' : 'cart cart-disable' }>
                         <button disabled={ !length } title={ length ? 'Pay' : 'Empty Cart' } onClick={ () => openModal() }>
                             { length !== 0 &&  <strong>+{ length }<br />${ total }</strong> }
-                            <img src={ shoppingCart } alt="shopping-cart" />
+                            <img src={ shoppingCart } alt="Shopping Cart" />
                         </button>
                     </div>
             }

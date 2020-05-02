@@ -29,11 +29,8 @@ button {
 
 section {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 49%);
     justify-content: space-between;
     padding-top: 80px;
-    padding-left: 50px;
-    padding-right: 50px;
 }
 
 .logo, .logo-404, .cart {
@@ -43,7 +40,6 @@ section {
 
 .logo {
     justify-content: flex-start;
-    padding-left: 80px;
 }
 
 .logo-404 {
@@ -52,7 +48,6 @@ section {
 
 .cart {
     justify-content: flex-end;
-    padding-right: 80px;
 }
 
 .logo a, .logo-404 a, .cart button {
@@ -198,7 +193,7 @@ section {
     }
 }
 
-@media (max-width: 279px) {
+@media (max-width: 249px) {
     .logo {
         display: none !important;
     }
@@ -210,13 +205,13 @@ section {
     }
 }
 
-@media (max-width: 449px) {
+@media (max-width: 409px) {
     .logo h1 {
         display: none;
     }
 }
 
-@media (max-width: 669px) {
+@media (max-width: 575px) {
     .logo {
         padding-left: 30px !important;
     }
@@ -227,8 +222,41 @@ section {
 
     section {
         grid-template-columns: 1fr !important;
-        padding-left: 10px !important;
-        padding-right: 10px !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+}
+
+@media (min-width: 576px) {
+    .logo {
+        padding-left: 60px !important;
+    }
+
+    .cart {
+        padding-right: 60px !important;
+    }
+
+    section {
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+    section {
+        grid-template-columns: repeat(auto-fill, 47%) !important;
+    }
+}
+
+@media (min-width: 992px)  and (max-width: 1199px) {
+    section {
+        grid-template-columns: repeat(auto-fill, 31%) !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    section {
+        grid-template-columns: repeat(auto-fill, 23%) !important;
     }
 }
 

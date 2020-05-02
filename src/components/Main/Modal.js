@@ -1,9 +1,9 @@
 import React, { useContext, Fragment } from 'react';
 import { CoursesContext } from './../../context/CoursesContext';
-import ProgressBar from './../common/ProgressBar';
+import modalProgressBar from './../../assets/img/modal-progress-bar.gif';
 
 const Modal = () => {
-    const { closeModal, selectedCourses, postOrder, message, paid, charged } = useContext(CoursesContext);
+    const { closeModal, selectedCourses, postOrder, message, paid, processing } = useContext(CoursesContext);
     return (
         <div id="modal" className="modal">
             <div className="modal-content">
@@ -16,7 +16,9 @@ const Modal = () => {
                 <div className="modal-container">
                     <h2>Purchase order Payment</h2>
                     {
-                        charged ?
+                        processing ?
+                            <img src={ modalProgressBar } alt="Modal Progress Bar" width="64" height="64"/>
+                        :
                             <Fragment>
                                 <p>{ message }</p>
                                 {
@@ -37,8 +39,6 @@ const Modal = () => {
                                         </div>
                                 }
                             </Fragment>
-                        :
-                            <ProgressBar />
                     }
                 </div>
             </div>
