@@ -17,7 +17,7 @@ const Modal = () => {
                     <h2>Purchase order Payment</h2>
                     {
                         processing ?
-                            <img src={ modalProgressBar } alt="Modal Progress Bar" width="64" height="64"/>
+                            <img src={ modalProgressBar } alt="Modal Progress Bar" />
                         :
                             <Fragment>
                                 <p>{ message }</p>
