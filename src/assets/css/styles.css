@@ -12,7 +12,7 @@ header {
     display: flex;
     width: 100%;
     height: 80px;
-    background: #444;
+    background: #339af0;
     z-index: 1;
 }
 
@@ -30,7 +30,9 @@ button {
 section {
     display: grid;
     justify-content: space-between;
-    padding-top: 80px;
+    padding-top: 100px;
+    padding-bottom: 20px;
+    background-color: #e7f5ff;
 }
 
 .logo, .logo-404, .cart {
@@ -80,15 +82,14 @@ section {
     cursor: not-allowed;
 }
 
-.logo a, .logo-404 a, .cart-enable button, .course button,
-.link, .course img, .modal-buttons button {
+.logo a, .logo-404 a, .cart-enable button,
+.course button, .link, .modal-buttons button {
     transition: all 300ms;
     cursor: pointer;
 }
 
 .logo a:hover, .logo-404 a:hover, .cart-enable button:hover,
-.course button:hover,.link:hover, .course img:hover,
-.modal-buttons button:hover {
+.course button:hover,.link:hover, .modal-buttons button:hover {
     transform: scale(1.1);
 }
 
@@ -137,22 +138,30 @@ section {
 }
 
 .course {
-    text-align: center;
-    box-shadow: 0px 0px 10px #444;
-    background: #f4f4f4;
-    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 4px 10px #a5d8ff;;
+    background: white;
+    border-radius: 15px;
     color: #444;
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 15px;
 }
 
+.data {
+    text-align: center;
+}
+
 .course img {
-    width: 70%;
+    width: 100%;
     height: auto;
+    border-radius: 15px;
     filter: saturate(200%);
     z-index: 0;
-    box-shadow: 0px 0px 20px #444;
+    box-shadow: 0px 4px 20px #dee2e6;
 }
 
 .course ul {
@@ -160,10 +169,16 @@ section {
     padding: 0;
 }
 
+.course ul li, .course p {
+    padding: 3px;
+    font-size: 17px;
+}
+
 .course button {
-    width: 80px;
-    padding: 10px;
-    color: white;
+    width: 120px;
+    padding: 15px;
+    color: #fff;
+    font-size: 15px;
 }
 
 .add {

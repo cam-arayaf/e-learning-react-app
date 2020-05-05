@@ -3,9 +3,9 @@ import { useLocation } from 'react-router-dom';
 import { validateSelectedCourses, validateTotal } from './../helpers';
 import { base_url } from './../constants';
 
-export const CoursesContext = createContext();
+export const ELearningContext = createContext();
 
-const CoursesContextProvider = ({ children }) => {
+const ELearningContextProvider = ({ children }) => {
 	const { pathname } = useLocation();
 	const body = document.querySelector('body');
 	const errorMessage = 'Internal server error. Please, try again';
@@ -92,7 +92,7 @@ const CoursesContextProvider = ({ children }) => {
 	}, [pathname]);
 
     return (
-        <CoursesContext.Provider value={{
+        <ELearningContext.Provider value={{
 			charged,
 			processing,
             selectedCourses,
@@ -109,10 +109,10 @@ const CoursesContextProvider = ({ children }) => {
 			validUrl
         }}>
             { children }
-        </CoursesContext.Provider>
+        </ELearningContext.Provider>
     );
 };
 
-CoursesContextProvider.displayName = 'CoursesContextProvider';
+ELearningContextProvider.displayName = 'ELearningContextProvider';
 
-export default CoursesContextProvider;
+export default ELearningContextProvider;

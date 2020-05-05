@@ -1,9 +1,9 @@
 import React, { Fragment, useContext } from 'react';
-import { CoursesContext } from './../../context/CoursesContext';
+import { ELearningContext } from './../../context/ELearningContext';
 import Course from './Course';
 
 const Courses = () => {
-    const { courses, handleButtonAddRemove, getIndex } = useContext(CoursesContext);
+    const { courses, handleButtonAddRemove, getIndex } = useContext(ELearningContext);
     return (
         <Fragment>
             {

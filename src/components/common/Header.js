@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { CoursesContext } from './../../context/CoursesContext';
+import { ELearningContext } from './../../context/ELearningContext';
 import logo from './../../assets/img/logo.png';
 import shoppingCart from './../../assets/img/shopping-cart.png';
 
 const Header = () => {
-    const { selectedCourses, total, openModal, validUrl } = useContext(CoursesContext);
+    const { selectedCourses, total, openModal, validUrl } = useContext(ELearningContext);
     const { length } = selectedCourses;
     return (
         <header>

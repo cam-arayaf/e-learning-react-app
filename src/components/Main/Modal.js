@@ -1,9 +1,9 @@
 import React, { useContext, Fragment } from 'react';
-import { CoursesContext } from './../../context/CoursesContext';
+import { ELearningContext } from './../../context/ELearningContext';
 import modalProgressBar from './../../assets/img/modal-progress-bar.gif';
 
 const Modal = () => {
-    const { closeModal, selectedCourses, postOrder, message, paid, processing } = useContext(CoursesContext);
+    const { closeModal, selectedCourses, postOrder, message, paid, processing } = useContext(ELearningContext);
     return (
         <div id="modal" className="modal">
             <div className="modal-content">

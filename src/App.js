@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import CoursesContextProvider from './context/CoursesContext';
+import ELearningContextProvider from './context/ELearningContext';
 import Header from './components/common/Header';
 import Main from './components/Main';
 import NotFound from './components/NotFound';
@@ -8,7 +8,7 @@ import './assets/css/styles.css';
 
 const App = () => (
 	<BrowserRouter>
-		<CoursesContextProvider>
+		<ELearningContextProvider>
 			<Header />
 			<Switch>
 				<Route exact path='/'>	
@@ -16,7 +16,7 @@ const App = () => (
 				</Route>
 				<Route component={ NotFound } />
 			</Switch>
-		</CoursesContextProvider>
+		</ELearningContextProvider>
     </BrowserRouter>
 );
 

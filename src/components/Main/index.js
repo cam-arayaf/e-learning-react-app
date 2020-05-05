@@ -1,12 +1,12 @@
 import React, { Fragment, useContext } from 'react';
-import { CoursesContext } from './../../context/CoursesContext';
+import { ELearningContext } from './../../context/ELearningContext';
 import Courses from './Courses';
 import Message from './../common/Message';
 import ProgressBar from './../common/ProgressBar';
 import Modal from './Modal';
 
 const Main = () => {
-    const { charged, courses, showModal, message } = useContext(CoursesContext);
+    const { charged, courses, showModal, message } = useContext(ELearningContext);
     return (
         <Fragment>
             {
