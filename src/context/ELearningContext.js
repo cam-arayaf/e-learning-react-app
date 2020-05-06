@@ -6,8 +6,8 @@ import { base_url } from './../constants';
 export const ELearningContext = createContext();
 
 const ELearningContextProvider = ({ children }) => {
+	const { body } = document;
 	const { pathname } = useLocation();
-	const body = document.querySelector('body');
 	const errorMessage = 'Internal server error. Please, try again';
 	const [charged, setCharged] = useState(false);
 	const [processing, setProcessing] = useState(false);
