@@ -3,9 +3,10 @@ import { ELearningContext } from './../../context/ELearningContext';
 import modalProgressBar from './../../assets/img/modal-progress-bar.gif';
 
 const Modal = () => {
-    const { closeModal, selectedCourses, postOrder, message, paid, processing } = useContext(ELearningContext);
+    const { closeModal, selectedCourses, postOrder, message, paid, processing, effect }
+        = useContext(ELearningContext);
     return (
-        <div id="modal" className="modal">
+        <div id="modal" className={ `modal ${ effect }` }>
             <div className="modal-content">
                 {
                     paid &&

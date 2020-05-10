@@ -13,7 +13,7 @@ const Main = () => {
                 charged ? (
                     courses.length ?
                         <Fragment>
-                            { showModal &&<Modal /> }
+                            { showModal && <Modal /> }
                             <section>
                                 <Courses />
                             </section>

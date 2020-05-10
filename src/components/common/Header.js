@@ -4,7 +4,7 @@ import logo from './../../assets/img/logo.png';
 import shoppingCart from './../../assets/img/shopping-cart.png';
 
 const Header = () => {
-    const { selectedCourses, total, openModal, validUrl } = useContext(ELearningContext);
+    const { selectedCourses, total, openModal, validUrl, modifyCart } = useContext(ELearningContext);
     const { length } = selectedCourses;
     return (
         <header>
@@ -17,8 +17,19 @@ const Header = () => {
             {
                 validUrl &&
                     <div className={ length ? 'cart cart-enable' : 'cart cart-disable' }>
-                        <button disabled={ !length } title={ length ? 'Pay' : 'Empty Cart' } onClick={ () => openModal() }>
-                            { length !== 0 &&  <strong>+{ length }<br />${ total }</strong> }
+                        <button
+                            className={ modifyCart ? 'changed-button' : null }
+                            disabled={ !length }
+                            title={ length ? 'Pay' : 'Empty Cart' }
+                            onClick={ () => openModal() }
+                        >
+                            { length !== 0 &&
+                                <strong
+                                    className={ modifyCart ? 'changed-strong' : null }
+                                >
+                                    +{ length }<br />${ total }
+                                </strong>
+                            }
                             <img src={ shoppingCart } alt="Shopping Cart" />
                         </button>
                     </div>

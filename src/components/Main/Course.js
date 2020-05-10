@@ -4,7 +4,7 @@ const Course = ({
     _id, title, description, teacher, image, price, handleButtonAddRemove, getIndex
 }) => (
     <div key={ _id } className="course">
-        <div className="data">
+        <div className="data charged">
             <img src={ image } alt={ title } />
             <ul>
                 <li><strong>{ title }</strong></li>
@@ -14,7 +14,7 @@ const Course = ({
             <p>{ description }</p>
         </div>
         <button
-            className={ getIndex(_id) === -1 ? 'add' : 'remove' }
+            className={ getIndex(_id) === -1 ? 'add charged' : 'remove charged' }
             onClick={ () => handleButtonAddRemove(_id) }
         >
             { getIndex(_id) === -1 ? 'Add' : 'Remove' }

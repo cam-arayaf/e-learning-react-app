@@ -1,14 +1,12 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { validateSelectedCourses, validateTotal } from './../helpers';
-import { base_url } from './../constants';
+import { body, errorMessage, base_url } from './../constants';
 
 export const ELearningContext = createContext();
 
 const ELearningContextProvider = ({ children }) => {
-	const { body } = document;
 	const { pathname } = useLocation();
-	const errorMessage = 'Internal server error. Please, try again';
 	const [charged, setCharged] = useState(false);
 	const [processing, setProcessing] = useState(false);
 	const [courses, setCourses] = useState([]);
@@ -18,6 +16,8 @@ const ELearningContextProvider = ({ children }) => {
 	const [message, setMessage] = useState('');
 	const [paid, setPaid] = useState(false);
 	const [validUrl, setValidUrl] = useState(false);
+	const [effect, setEffect] = useState('');
+	const [modifyCart, setModifyCart] = useState(false);
 
 	const getCourses = () => {
 		fetch(`${ base_url }courses`)
@@ -71,18 +71,24 @@ const ELearningContextProvider = ({ children }) => {
 		setSelectedCourses(JSON.parse(localStorage.getItem('selectedCourses')));
 		localStorage.setItem('total', totalPrice(_id));
 		setTotal(Number(localStorage.getItem('total')));
+		setModifyCart(true);
+		setTimeout(() => setModifyCart(false), 300);
 	}
 
 	const openModal = () => {
 		body.style.overflow = 'hidden';
+		setEffect('show');
 		setMessage('Are you sure you want to pay?');
 		setShowModal(true);
 	}
 
 	const closeModal = () => {
-		setPaid(false);
-		body.removeAttribute('style');
-		setShowModal(false);
+		setEffect('close');
+		setTimeout(() => {
+			body.removeAttribute('style');
+			setPaid(false);
+			setShowModal(false);
+		}, 300);
 	}
 
 	useEffect(() => {
@@ -106,7 +112,9 @@ const ELearningContextProvider = ({ children }) => {
 			postOrder,
 			message,
 			paid,
-			validUrl
+			validUrl,
+			effect,
+			modifyCart
         }}>
             { children }
         </ELearningContext.Provider>
